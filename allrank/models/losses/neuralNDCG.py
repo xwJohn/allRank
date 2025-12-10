@@ -67,7 +67,8 @@ def neuralNDCG(y_pred, y_true, padded_value_indicator=PADDED_Y_VALUE, temperatur
         return torch.tensor(0.)
 
     mean_ndcg = ndcg.sum() / ((~idcg_mask).sum() * ndcg.shape[0])  # type: ignore
-    return -1. * mean_ndcg  # -1 cause we want to maximize NDCG
+    # return -1. * mean_ndcg  # -1 cause we want to maximize NDCG
+    return 1 - mean_ndcg  # change loss to [0, 1] range
 
 
 def neuralNDCG_transposed(y_pred, y_true, padded_value_indicator=PADDED_Y_VALUE, temperature=1.,

@@ -42,13 +42,11 @@ def deterministic_neural_sort(s, tau, mask):
     :return: approximate permutation matrices of shape [batch_size, slate_length, slate_length]
     """
     dev = get_torch_device()
-
     n = s.size()[1]
     one = torch.ones((n, 1), dtype=torch.float32, device=dev)
     s = s.masked_fill(mask[:, :, None], -1e8)
     A_s = torch.abs(s - s.permute(0, 2, 1))
     A_s = A_s.masked_fill(mask[:, :, None] | mask[:, None, :], 0.0)
-
     B = torch.matmul(A_s, torch.matmul(one, torch.transpose(one, 0, 1)))
 
     temp = [n - m + 1 - 2 * (torch.arange(n - m, device=dev) + 1) for m in mask.squeeze(-1).sum(dim=1)]
