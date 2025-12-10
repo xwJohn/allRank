@@ -2,7 +2,7 @@
   "model": {
     "fc_model": {
       "sizes": [
-        64
+        8
       ],
       "input_norm": false,
       "activation": null,
@@ -10,7 +10,7 @@
     },
     "transformer": {
       "N": 1,
-      "d_ff": 64,
+      "d_ff": 8,
       "h": 1,
       "positional_encoding": null,
       "dropout": 0.0
@@ -24,7 +24,7 @@
     "path": "/allrank/dummy_data",
     "validation_ds_role": "vali",
     "num_workers": 1,
-    "batch_size": 64,
+    "batch_size": 20,
     "slate_length": 240
   },
   "optimizer": {
